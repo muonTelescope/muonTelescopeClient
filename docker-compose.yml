@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+  expose-hardware:
+    build:
+      context: ./expose-hardware
+      dockerfile: arm.Dockerfile
+    volumes:
+      - ./expose-hardware:/usr/src/app:rw
+      - /lib/modules:/lib/modules:rw
+    cap_add:
+      - SYS_RAWIO
+    privileged: true
+    ports:
+      - "80:8000"
